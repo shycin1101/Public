@@ -1,0 +1,24 @@
+name: watchdog
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 每天 UTC 13:00 = 北京时间 21:00
+  workflow_dispatch:       # 允许手动点一次
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 检查云端备份
+        run: node watchdog.mjs
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SENDKEY: ${{ secrets.SENDKEY }}
+          FRESH_DAYS: ${{ vars.FRESH_DAYS || '14' }}
