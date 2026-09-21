@@ -12,10 +12,10 @@
  *   → 那个缓存桶永远不换名字、永远不清
  * 结果就是：浏览器直接打开是新版本，而"添加到桌面"的应用一直停在旧版。
  *
- * 修法：CACHE 名里带上构建号，构建时由 vite.config.js 把 20260917124935 替换掉。
+ * 修法：CACHE 名里带上构建号，构建时由 vite.config.js 把 20260921184652 替换掉。
  * 每次构建 sw.js 字节必变 → 浏览器一定会发现新版本 → 页面提示"点击更新"。
  */
-const CACHE = 'dingtou-20260917124935'
+const CACHE = 'dingtou-20260921184652'
 const ASSETS = ['./index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png']
 
 self.addEventListener('install', (e) => {
